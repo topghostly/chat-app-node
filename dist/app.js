@@ -1,13 +1,13 @@
 "use strict";
 const express = require('express');
-// import { Socket, Server } from "socket.io";
-// import http from 'http'
-// import bodyParser from "body-parser";
-// Makinf an express instance 
+const { Server } = require('socket.io');
+const http = require('http');
+const bodyParser = require('body-parser');
+// Making an express instance
 const app = express();
-console.log("This is good ");
-// // initiallising the server 
-// const server = http.createServer(app)
-// const io = new Server(server)
-// // Middleware
-// app.use(express.json()) //for json documents  
+// Initializing the server
+const server = http.createServer(app);
+const io = new Server(server);
+// Middleware
+app.use(express.json()); // for parsing JSON documents
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing URL-encoded data
